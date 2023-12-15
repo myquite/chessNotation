@@ -76,7 +76,7 @@ body {
 .answer {
   position: absolute;
   width: 80%;
-  top: 22rem;
+  top: 18rem;
   left: 20px;
   color: var(--answer-text-color);
   padding: 1rem;
