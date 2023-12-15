@@ -7,11 +7,13 @@
     <title>Chess Notation Trainer</title>
   </head>
   <body>
+    <div class="answer hidden"></div>
     <div class="wrapper">
       <div class="controls">
         <div class="controls__notation">
           <div class="startChallenge">
-            <button id="start-challenge-button" onclick="startChallenge()">Start Challenge</button>
+            <button id="start-challenge-button" onclick="startChallenge()">Start</button>
+            <button id="quit-challenge-button" onclick="quitChallenge()">Quit</button>
             <input type="text" id="userInput" placeholder="Enter notation">
             <button onclick="checkNotation(document.getElementById('userInput').value)">Check Answer</button>
           </div>
@@ -22,7 +24,6 @@
           </label>
           </div>
         </div>
-        <div class="answer"></div>
       <div class="chessboard"></div>
     </div>
     <script src="js/chessboard.js" defer></script>

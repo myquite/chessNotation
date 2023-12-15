@@ -53,12 +53,12 @@ function startChallenge() {
 }
 
 function checkNotation(userInput) {
-  console.log("userInput", userInput);
   const highlightedSquare = document.querySelector(".highlight");
   if (highlightedSquare) {
     const correctNotation = highlightedSquare.getAttribute("data-notation");
     if (userInput === correctNotation) {
       displayAnswer("Correct!");
+      startChallenge();
     } else {
       displayAnswer("Incorrect, try again!");
     }
@@ -78,6 +78,11 @@ function clearHighlights() {
   document.querySelectorAll(".square").forEach((sq) => {
     sq.classList.remove("highlight");
   });
+}
+
+function quitChallenge() {
+  clearHighlights();
+  document.querySelector(".answer").classList.add("hidden");
 }
 
 createChessBoard();
