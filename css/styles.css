@@ -5,14 +5,16 @@ body {
 
 body {
   font-family: "Franklin Gothic Medium", Arial, sans-serif;
+  background-color: #c9fccb;
 }
 
 .wrapper {
-  background-color: #9fddaf;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 2rem;
 }
 
 .chessboard {
@@ -22,7 +24,6 @@ body {
   grid-template-rows: repeat(8, 1fr);
   width: 75vmin;
   height: 75vmin;
-  margin: 2rem 0;
 }
 
 .chessboard > div {
@@ -58,8 +59,8 @@ body {
 
 .answer {
   position: fixed;
-  top: calc(100vh / 2);
-  left: calc(100vw / 2 - 2rem);
+  top: 4rem;
+  left: calc(50% / 2);
   color: #333;
   padding: 1rem;
   border-radius: 0.5rem;
@@ -70,8 +71,7 @@ body {
 /* General form styling */
 .menu {
   width: 75vmin;
-  margin: 20px;
-  padding: 15px;
+  padding: 1rem;
   border-radius: 5px;
   background-color: #f2f2f2;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
