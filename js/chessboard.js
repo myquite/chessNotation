@@ -12,9 +12,10 @@ function createChessBoard() {
     for (let col = 0; col < size; col++) {
       const square = document.createElement("div");
       square.classList.add("square");
+
       const isDarkSquare = (row + col) % 2 === 1;
       square.classList.add(isDarkSquare ? "dark" : "light");
-
+      square.id = `square-${row}-${col}`; // Add an identifier
       // Add notation text to the square
       const notation = String.fromCharCode(97 + col) + (size - row);
       const notationDiv = document.createElement("div");
@@ -32,6 +33,38 @@ function toggleChessNotation() {
   notations.forEach((notation) => {
     notation.classList.toggle("hidden");
   });
+}
+
+function startChallenge() {
+  console.log("startChallenge");
+  // Remove highlight from all squares
+  document.querySelectorAll(".square").forEach((sq) => {
+    sq.classList.remove("highlight");
+  });
+
+  // Randomly select a square
+  const row = Math.floor(Math.random() * 8);
+  const col = Math.floor(Math.random() * 8);
+  const selectedSquare = document.getElementById(`square-${row}-${col}`);
+  selectedSquare.classList.add("highlight");
+
+  // Store the correct answer for later validation
+  const correctNotation = String.fromCharCode(97 + col) + (8 - row);
+  selectedSquare.setAttribute("data-notation", correctNotation);
+  console.log("correctNotation", correctNotation);
+}
+
+function checkNotation(userInput) {
+  console.log("userInput", userInput);
+  const highlightedSquare = document.querySelector(".highlight");
+  if (highlightedSquare) {
+    const correctNotation = highlightedSquare.getAttribute("data-notation");
+    if (userInput === correctNotation) {
+      alert("Correct!");
+    } else {
+      alert("Incorrect, try again!");
+    }
+  }
 }
 
 createChessBoard();
