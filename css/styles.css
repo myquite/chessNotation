@@ -76,7 +76,7 @@ body {
 .answer {
   position: absolute;
   width: 80%;
-  top: 12rem;
+  top: 22rem;
   left: 20px;
   color: var(--answer-text-color);
   padding: 1rem;
@@ -127,4 +127,33 @@ button {
 
 button:hover {
   background-color: var(--button-hover-bg-color);
+}
+
+.scoreboard {
+  margin-bottom: 1rem;
+  padding: 10px;
+  text-align: center;
+  background-color: var(--dark-color);
+  border-radius: 0.5rem;
+}
+
+.scoreboard span {
+  padding: 1rem 2.5rem;
+}
+
+#correctCount {
+  background-color: rgb(76, 175, 80);
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+#incorrectCount {
+  background-color: rgb(240, 61, 61);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.scoreboard p {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: var(--dark-color);
+  margin: 1rem 0 1rem 0;
 }

@@ -1,3 +1,6 @@
+let correctCount = 0;
+let incorrectCount = 0;
+
 function createChessBoard(orientation = "white") {
   const chessboard = document.querySelector(".chessboard");
   if (!chessboard) {
@@ -99,9 +102,12 @@ function checkNotation(userInput) {
   if (highlightedSquare) {
     const correctNotation = highlightedSquare.getAttribute("data-notation");
     if (userInput === correctNotation) {
+      updateScoreboard(true);
       displayAnswer("Correct!");
       startChallenge();
     } else {
+      updateScoreboard(false);
+      focusAndSelectInput();
       displayAnswer("Incorrect, try again!");
     }
   }
@@ -127,6 +133,7 @@ function quitChallenge() {
   document.querySelector(".answer").classList.add("hidden");
   const inputField = document.getElementById("userInput");
   inputField.value = "";
+  resetScoreboard();
 }
 
 function focusAndSelectInput() {
@@ -135,6 +142,23 @@ function focusAndSelectInput() {
     inputField.focus(); // Sets focus on the input field
     inputField.select(); // Selects the current text
   }
+}
+
+function updateScoreboard(isCorrect) {
+  if (isCorrect) {
+    correctCount++;
+    document.getElementById("correctCount").textContent = correctCount;
+  } else {
+    incorrectCount++;
+    document.getElementById("incorrectCount").textContent = incorrectCount;
+  }
+}
+
+function resetScoreboard() {
+  correctCount = 0;
+  incorrectCount = 0;
+  document.getElementById("correctCount").textContent = correctCount;
+  document.getElementById("incorrectCount").textContent = incorrectCount;
 }
 
 document.addEventListener("keypress", function (event) {
