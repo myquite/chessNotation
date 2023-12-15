@@ -125,6 +125,8 @@ function clearHighlights() {
 function quitChallenge() {
   clearHighlights();
   document.querySelector(".answer").classList.add("hidden");
+  const inputField = document.getElementById("userInput");
+  inputField.value = "";
 }
 
 function focusAndSelectInput() {
