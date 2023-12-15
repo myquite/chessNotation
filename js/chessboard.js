@@ -94,7 +94,6 @@ function startChallenge() {
   // Store the correct answer for later validation
   const correctNotation = String.fromCharCode(97 + col) + (8 - row);
   selectedSquare.setAttribute("data-notation", correctNotation);
-  console.log("correctNotation", correctNotation);
 }
 
 function checkNotation(userInput) {
