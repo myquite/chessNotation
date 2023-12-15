@@ -37,3 +37,7 @@ body {
   flex-direction: column;
   color: lightskyblue;
 }
+
+.hidden {
+  display: none;
+}

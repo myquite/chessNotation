@@ -8,6 +8,21 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class="header">
+        <h1>Chess Notation Trainer</h1>
+      </div>
+      <div class="controls">
+        <div class="controls__notation">
+          <h2>Notation</h2>
+          <div class="controls__notation__input">
+            <input type="text" name="notation" id="notation" />
+            <button id="submit">Submit</button>
+          </div>
+          <div class="toggleNotation">
+            <input type="checkbox" name="toggleNotation" id="toggleNotation"onclick="toggleChessNotation()"/>
+            <label for="toggleNotation">Toggle Notation</label>
+          </div>
+        </div>
       <div class="chessboard"></div>
     </div>
     <script src="js/chessboard.js"></script>

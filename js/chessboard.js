@@ -27,4 +27,11 @@ function createChessBoard() {
   }
 }
 
+function toggleChessNotation() {
+  const notations = document.querySelectorAll(".notation");
+  notations.forEach((notation) => {
+    notation.classList.toggle("hidden");
+  });
+}
+
 createChessBoard();
