@@ -29,11 +29,13 @@ body {
 
 .chessboard {
   border: 4px solid var(--dark-color);
+  border-radius: 4px;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
   width: 75vmin;
   height: 75vmin;
+  box-shadow: 0 2px 5px var(--menu-box-shadow-color);
 }
 
 .chessboard > div {
@@ -86,7 +88,9 @@ body {
   width: 75vmin;
   padding: 1rem;
   border-radius: 5px;
-  background-color: var(--menu-bg-color);
+  border: 4px solid var(--dark-color);
+  border-radius: 4px;
+  background-color: var(--light-color);
   box-shadow: 0 2px 5px var(--menu-box-shadow-color);
 }
 
