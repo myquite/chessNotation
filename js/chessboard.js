@@ -37,11 +37,8 @@ function toggleChessNotation() {
 }
 
 function startChallenge() {
-  console.log("startChallenge");
   // Remove highlight from all squares
-  document.querySelectorAll(".square").forEach((sq) => {
-    sq.classList.remove("highlight");
-  });
+  clearHighlights();
 
   // Randomly select a square
   const row = Math.floor(Math.random() * 8);
@@ -77,9 +74,10 @@ function displayAnswer(answer) {
   }, 2000);
 }
 
-function displayModal() {
-  const modal = document.querySelector(".modal");
-  modal.classList.remove("hidden");
+function clearHighlights() {
+  document.querySelectorAll(".square").forEach((sq) => {
+    sq.classList.remove("highlight");
+  });
 }
 
 createChessBoard();
