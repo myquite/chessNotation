@@ -1,4 +1,4 @@
-function createChessBoard() {
+function createChessBoard(orientation = "white") {
   const chessboard = document.querySelector(".chessboard");
   if (!chessboard) {
     console.error("Chessboard element not found");
@@ -6,13 +6,14 @@ function createChessBoard() {
   }
 
   chessboard.innerHTML = "";
-
   const size = 8;
   for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
       const square = document.createElement("div");
       square.classList.add("square");
+      square.id = `square-${row}-${col}`;
 
+      // Determine square color
       const isDarkSquare = (row + col) % 2 === 1;
       square.classList.add(isDarkSquare ? "dark" : "light");
       square.id = `square-${row}-${col}`; // Add an identifier
@@ -23,8 +24,13 @@ function createChessBoard() {
       notationDiv.textContent = notation;
       square.appendChild(notationDiv);
 
+      // Add the square to the chessboard
       chessboard.appendChild(square);
     }
+  }
+
+  if (orientation === "black") {
+    rotateBoard();
   }
   toggleChessNotation();
 }
@@ -83,6 +89,41 @@ function clearHighlights() {
 function quitChallenge() {
   clearHighlights();
   document.querySelector(".answer").classList.add("hidden");
+}
+
+function rotateBoard() {
+  const chessboard = document.querySelector(".chessboard");
+  if (!chessboard) {
+    return;
+  }
+
+  // Create an array of rows
+  let rows = [];
+  for (let i = 0; i < 8; i++) {
+    rows.push(Array.from(chessboard.children).slice(i * 8, (i + 1) * 8));
+  }
+
+  // Reverse each row and the order of rows
+  rows.reverse().forEach((row) => {
+    row.reverse().forEach((square) => {
+      chessboard.appendChild(square);
+    });
+  });
+}
+
+function toggleView() {
+  const chessboard = document.querySelector(".chessboard");
+  if (!chessboard) {
+    return;
+  }
+  const viewButton = document.querySelector(".view-button");
+  if (viewButton.textContent === "View as White") {
+    viewButton.textContent = "View as Black";
+  } else {
+    viewButton.textContent = "View as White";
+  }
+  chessboard.classList.toggle("rotated");
+  rotateBoard();
 }
 
 createChessBoard();
