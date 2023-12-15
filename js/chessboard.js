@@ -26,6 +26,7 @@ function createChessBoard() {
       chessboard.appendChild(square);
     }
   }
+  toggleChessNotation();
 }
 
 function toggleChessNotation() {
@@ -60,11 +61,25 @@ function checkNotation(userInput) {
   if (highlightedSquare) {
     const correctNotation = highlightedSquare.getAttribute("data-notation");
     if (userInput === correctNotation) {
-      alert("Correct!");
+      displayAnswer("Correct!");
     } else {
-      alert("Incorrect, try again!");
+      displayAnswer("Incorrect, try again!");
     }
   }
+}
+
+function displayAnswer(answer) {
+  const answerDiv = document.querySelector(".answer");
+  answerDiv.textContent = answer;
+  answerDiv.classList.remove("hidden");
+  setTimeout(() => {
+    answerDiv.classList.add("hidden");
+  }, 2000);
+}
+
+function displayModal() {
+  const modal = document.querySelector(".modal");
+  modal.classList.remove("hidden");
 }
 
 createChessBoard();

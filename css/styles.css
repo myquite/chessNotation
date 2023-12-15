@@ -52,5 +52,6 @@ body {
 }
 
 .square.highlight {
-  border: 2px solid red;
+  border: 2px solid rgb(81, 159, 255);
+  background-color: rgb(81, 159, 255, 0.5);
 }
