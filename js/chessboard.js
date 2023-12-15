@@ -71,6 +71,13 @@ function checkNotation(userInput) {
   }
 }
 
+document.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    const userInput = document.getElementById("userInput").value;
+    checkNotation(userInput);
+  }
+});
+
 function displayAnswer(answer) {
   const answerDiv = document.querySelector(".answer");
   answerDiv.textContent = answer;

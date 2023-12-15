@@ -9,23 +9,36 @@
   <body>
     <div class="answer hidden"></div>
     <div class="wrapper">
-      <div class="controls">
-        <div class="controls__notation">
-          <div class="startChallenge">
-            <button id="start-challenge-button" onclick="startChallenge()">Start</button>
-            <button id="quit-challenge-button" onclick="quitChallenge()">Quit</button>
-            <input type="text" id="userInput" placeholder="Enter notation">
-            <button onclick="checkNotation(document.getElementById('userInput').value)">Check Answer</button>
-          </div>
-          <div class="toggleNotation">
-            <label for="toggleNotation">
-            <input type="checkbox" name="toggleNotation" id="toggleNotation"onclick="toggleChessNotation()"/>
+      <div class="chessboard"></div>
+      <div class="menu">
+        <div class="menu-main">
+          <button id="start-challenge-button" onclick="startChallenge()">
+            Start
+          </button>
+          <button id="quit-challenge-button" onclick="quitChallenge()">
+            Quit
+          </button>
+          <button class="view-button" onclick="toggleView()">
+            View as Black
+          </button>
+          <label for="toggleNotation">
+            <input
+              type="checkbox"
+              name="toggleNotation"
+              id="toggleNotation"
+              onclick="toggleChessNotation()"
+            />
             Toggle Notation
           </label>
-          <button class="view-button" onclick="toggleView()">View as Black</button>
-          </div>
+          <input type="text" id="userInput" placeholder="Enter notation" />
+          <!-- <button
+            onclick="checkNotation(document.getElementById('userInput').value)"
+          >
+            Check Answer
+          </button> -->
         </div>
-      <div class="chessboard"></div>
+        <div class="menu-view"></div>
+      </div>
     </div>
     <script src="js/chessboard.js" defer></script>
   </body>
