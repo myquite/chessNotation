@@ -35,69 +35,6 @@ function createChessBoard(orientation = "white") {
   toggleChessNotation();
 }
 
-function toggleChessNotation() {
-  const notations = document.querySelectorAll(".notation");
-  notations.forEach((notation) => {
-    notation.classList.toggle("hidden");
-  });
-}
-
-function startChallenge() {
-  // Remove highlight from all squares
-  clearHighlights();
-
-  // Randomly select a square
-  const row = Math.floor(Math.random() * 8);
-  const col = Math.floor(Math.random() * 8);
-  const selectedSquare = document.getElementById(`square-${row}-${col}`);
-  selectedSquare.classList.add("highlight");
-
-  // Store the correct answer for later validation
-  const correctNotation = String.fromCharCode(97 + col) + (8 - row);
-  selectedSquare.setAttribute("data-notation", correctNotation);
-  console.log("correctNotation", correctNotation);
-}
-
-function checkNotation(userInput) {
-  const highlightedSquare = document.querySelector(".highlight");
-  if (highlightedSquare) {
-    const correctNotation = highlightedSquare.getAttribute("data-notation");
-    if (userInput === correctNotation) {
-      displayAnswer("Correct!");
-      startChallenge();
-    } else {
-      displayAnswer("Incorrect, try again!");
-    }
-  }
-}
-
-document.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    const userInput = document.getElementById("userInput").value;
-    checkNotation(userInput);
-  }
-});
-
-function displayAnswer(answer) {
-  const answerDiv = document.querySelector(".answer");
-  answerDiv.textContent = answer;
-  answerDiv.classList.remove("hidden");
-  setTimeout(() => {
-    answerDiv.classList.add("hidden");
-  }, 2000);
-}
-
-function clearHighlights() {
-  document.querySelectorAll(".square").forEach((sq) => {
-    sq.classList.remove("highlight");
-  });
-}
-
-function quitChallenge() {
-  clearHighlights();
-  document.querySelector(".answer").classList.add("hidden");
-}
-
 function rotateBoard() {
   const chessboard = document.querySelector(".chessboard");
   if (!chessboard) {
@@ -132,5 +69,77 @@ function toggleView() {
   chessboard.classList.toggle("rotated");
   rotateBoard();
 }
+
+function toggleChessNotation() {
+  const notations = document.querySelectorAll(".notation");
+  notations.forEach((notation) => {
+    notation.classList.toggle("hidden");
+  });
+}
+
+function startChallenge() {
+  // Remove highlight from all squares
+  clearHighlights();
+  focusAndSelectInput();
+
+  // Randomly select a square
+  const row = Math.floor(Math.random() * 8);
+  const col = Math.floor(Math.random() * 8);
+  const selectedSquare = document.getElementById(`square-${row}-${col}`);
+  selectedSquare.classList.add("highlight");
+
+  // Store the correct answer for later validation
+  const correctNotation = String.fromCharCode(97 + col) + (8 - row);
+  selectedSquare.setAttribute("data-notation", correctNotation);
+  console.log("correctNotation", correctNotation);
+}
+
+function checkNotation(userInput) {
+  const highlightedSquare = document.querySelector(".highlight");
+  if (highlightedSquare) {
+    const correctNotation = highlightedSquare.getAttribute("data-notation");
+    if (userInput === correctNotation) {
+      displayAnswer("Correct!");
+      startChallenge();
+    } else {
+      displayAnswer("Incorrect, try again!");
+    }
+  }
+}
+
+function displayAnswer(answer) {
+  const answerDiv = document.querySelector(".answer");
+  answerDiv.textContent = answer;
+  answerDiv.classList.remove("hidden");
+  setTimeout(() => {
+    answerDiv.classList.add("hidden");
+  }, 2000);
+}
+
+function clearHighlights() {
+  document.querySelectorAll(".square").forEach((sq) => {
+    sq.classList.remove("highlight");
+  });
+}
+
+function quitChallenge() {
+  clearHighlights();
+  document.querySelector(".answer").classList.add("hidden");
+}
+
+function focusAndSelectInput() {
+  const inputField = document.getElementById("userInput");
+  if (inputField) {
+    inputField.focus(); // Sets focus on the input field
+    inputField.select(); // Selects the current text
+  }
+}
+
+document.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    const userInput = document.getElementById("userInput").value;
+    checkNotation(userInput);
+  }
+});
 
 createChessBoard();
