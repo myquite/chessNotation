@@ -3,8 +3,9 @@
   --border-color: #333;
   --light-color: #fff;
   --dark-color: #333;
-  --highlight-color: rgb(81, 159, 255);
-  --highlight-opacity: 0.5;
+  --highlight-dark: rgb(62, 141, 239);
+  --highlight-light: rgb(86, 188, 252);
+  --highlight-opacity: ;
   --answer-bg-color: #fff;
   --answer-text-color: #333;
   --menu-bg-color: #f2f2f2;
@@ -59,7 +60,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: rgb(86, 188, 252);
+  color: var(--highlight-dark);
 }
 
 .hidden {
@@ -67,14 +68,16 @@ body {
 }
 
 .square.highlight {
-  border: 2px solid var(--highlight-color);
-  background-color: rgba(var(--highlight-color), var(--highlight-opacity));
+  border: 2px solid var(--highlight-dark);
+  background-color: var(--highlight-light);
+  border-radius: 2px;
 }
 
 .answer {
-  position: fixed;
-  top: 4rem;
-  left: calc(50% / 2);
+  position: absolute;
+  width: 80%;
+  top: 12rem;
+  left: 20px;
   color: var(--answer-text-color);
   padding: 1rem;
   border-radius: 0.5rem;
@@ -84,6 +87,7 @@ body {
 
 /* General form styling */
 .menu {
+  position: relative;
   width: 75vmin;
   padding: 1rem;
   border-radius: 5px;
