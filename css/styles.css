@@ -204,4 +204,7 @@ button#quit-challenge-button:hover {
   .menu {
     width: 90vmin;
   }
+  input {
+    font-size: 16px;
+  }
 }
