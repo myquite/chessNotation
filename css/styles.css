@@ -181,6 +181,6 @@ button#quit-challenge-button:hover {
 .scoreboard p {
   display: inline-block;
   font-size: 1.5rem;
-  color: var(--dark-color);
+  color: var(--light-color);
   margin: 1rem 0 1rem 0;
 }
