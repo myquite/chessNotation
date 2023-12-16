@@ -66,8 +66,12 @@ function toggleView() {
   const viewButton = document.querySelector(".view-button");
   if (viewButton.textContent === "View as White") {
     viewButton.textContent = "View as Black";
+    viewButton.classList.remove("white");
+    viewButton.classList.add("black");
   } else {
     viewButton.textContent = "View as White";
+    viewButton.classList.remove("black");
+    viewButton.classList.add("white");
   }
   chessboard.classList.toggle("rotated");
   rotateBoard();

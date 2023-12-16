@@ -7,8 +7,10 @@
   --menu-bg-color: #f2f2f2;
   --menu-box-shadow-color: rgba(0, 0, 0, 0.2);
   --input-border-color: #ccc;
-  --button-bg-color: #4caf50;
-  --button-hover-bg-color: #38843c;
+  --main-btn-bg-color: #4caf50;
+  --main-btn-bg-hover-color: #38843c;
+  --secondary-btn-bg-color: rgb(233, 60, 60);
+  --secondary-btn-bg-hover-color: rgb(219, 28, 28);
 }
 
 body {
@@ -82,7 +84,6 @@ body {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
 }
 
-/* General form styling */
 .menu {
   position: relative;
   width: 75vmin;
@@ -94,7 +95,6 @@ body {
   box-shadow: 0 2px 5px var(--menu-box-shadow-color);
 }
 
-/* Style inputs */
 input[type="text"] {
   width: 100%;
   padding: 12px 20px;
@@ -105,16 +105,14 @@ input[type="text"] {
   box-sizing: border-box;
 }
 
-/* Style labels */
 label {
   font-size: 0.9rem;
   display: block;
   margin-bottom: 5px;
 }
 
-/* General button styling */
 button {
-  background-color: var(--button-bg-color);
+  background-color: var(--main-btn-bg-color);
   color: var(--light-color);
   padding: 14px 20px;
   margin: 8px 0;
@@ -125,7 +123,37 @@ button {
 }
 
 button:hover {
-  background-color: var(--button-hover-bg-color);
+  background-color: var(--main-btn-bg-hover-color);
+}
+
+button#quit-challenge-button {
+  background-color: var(--secondary-btn-bg-color);
+}
+
+button#quit-challenge-button:hover {
+  background-color: var(--secondary-btn-bg-hover-color);
+}
+
+.white {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: 1px solid var(--dark-color);
+}
+
+.white:hover {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.black {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.black:hover {
+  background-color: var(--light-color);
+  border: 1px solid var(--light-color);
+  color: var(--dark-color);
 }
 
 .scoreboard {
