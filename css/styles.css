@@ -74,10 +74,11 @@ body {
 
 .answer {
   position: absolute;
-  width: 80%;
-  top: 18rem;
-  left: 20px;
+  width: 100px;
+  top: 1rem;
+  left: 18rem;
   color: var(--dark-color);
+  text-align: center;
   padding: 1rem;
   border-radius: 0.5rem;
   background-color: var(--light-color);
@@ -183,4 +184,23 @@ button#quit-challenge-button:hover {
   font-size: 1.5rem;
   color: var(--light-color);
   margin: 1rem 0 1rem 0;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .chessboard {
+    width: 90vmin;
+    height: 90vmin;
+  }
+  .answer {
+    width: 100px;
+    top: 2rem;
+    left: 11rem;
+  }
+  .menu {
+    width: 90vmin;
+  }
 }
