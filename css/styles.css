@@ -76,12 +76,6 @@ body {
   display: none;
 }
 
-.square.highlight {
-  border: 2px solid var(--highlight-dark);
-  background-color: var(--highlight-light);
-  border-radius: 2px;
-}
-
 .feedback-message {
   margin: 10px;
   padding: 10px;
@@ -125,16 +119,6 @@ body {
   box-shadow: 0 2px 5px var(--menu-box-shadow-color);
 }
 
-input[type="text"] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid var(--input-border-color);
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
 label {
   font-size: 0.9rem;
   display: block;
@@ -154,14 +138,6 @@ button {
 
 button:hover {
   background-color: var(--main-btn-bg-hover-color);
-}
-
-button#quit-challenge-button {
-  background-color: var(--secondary-btn-bg-color);
-}
-
-button#quit-challenge-button:hover {
-  background-color: var(--secondary-btn-bg-hover-color);
 }
 
 .white {
@@ -187,18 +163,6 @@ button#quit-challenge-button:hover {
   color: var(--dark-color);
 }
 
-.scoreboard {
-  margin-bottom: 1rem;
-  padding: 10px;
-  text-align: center;
-  background-color: var(--dark-color);
-  border-radius: 0.5rem;
-}
-
-.scoreboard span {
-  padding: 1rem 2.5rem;
-}
-
 #correctCount {
   background-color: rgb(76, 175, 80);
   border-radius: 0.5rem 0 0 0.5rem;
@@ -209,21 +173,15 @@ button#quit-challenge-button:hover {
   border-radius: 0 0.5rem 0.5rem 0;
 }
 
-.scoreboard p {
-  display: inline-block;
-  font-size: 1.5rem;
-  color: var(--light-color);
-  margin: 1rem 0 1rem 0;
-}
-
 .results-list {
   list-style: none;
   padding: 0;
+  display: flex;
 }
 
 .results-list li {
   margin: 5px;
-  padding: 5px;
+  padding: 0.5rem;
   border-radius: 3px;
 }
 

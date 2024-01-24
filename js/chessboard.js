@@ -161,9 +161,7 @@ function showResults() {
 
   results.forEach((result, index) => {
     const resultItem = document.createElement("li");
-    resultItem.textContent = `Round ${index + 1}: ${result.notation} - ${
-      result.isCorrect ? "Correct" : "Incorrect"
-    }`;
+    resultItem.textContent = `${result.notation}`;
     resultItem.className = result.isCorrect ? "correct" : "incorrect";
     resultsList.appendChild(resultItem);
   });
