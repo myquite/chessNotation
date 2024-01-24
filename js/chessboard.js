@@ -6,6 +6,8 @@ let rounds = 0;
 let maxRounds = 10;
 let results = [];
 
+// TODO Create a reset function that empties the results array and resets the rounds to 0
+
 function createChessBoard(orientation = "white") {
   const chessboard = document.querySelector(".chessboard");
   if (!chessboard) {
@@ -38,7 +40,6 @@ function createChessBoard(orientation = "white") {
       // Add click event listener to the square
       square.addEventListener("click", function () {
         checkSquare(this, `square-${row}-${col}`);
-        console.log(`${notation} clicked`);
       });
     }
   }
