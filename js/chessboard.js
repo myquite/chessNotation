@@ -2,6 +2,10 @@ let correctCount = 0;
 let incorrectCount = 0;
 let feedbackTimeout;
 
+let rounds = 0;
+let maxRounds = 10;
+let results = [];
+
 function createChessBoard(orientation = "white") {
   const chessboard = document.querySelector(".chessboard");
   if (!chessboard) {
@@ -95,6 +99,13 @@ function checkSquare(clickedSquare, squareId) {
   const correctSquareId = document
     .getElementById("notationDisplay")
     .getAttribute("data-correct-square");
+  const notation = document
+    .getElementById("notationDisplay")
+    .textContent.replace("Find the square: ", "");
+
+  let isCorrect = squareId === correctSquareId;
+  results.push({ notation, isCorrect });
+
   const feedbackMessage = document.getElementById("feedbackMessage");
 
   if (squareId === correctSquareId) {
@@ -103,6 +114,12 @@ function checkSquare(clickedSquare, squareId) {
   } else {
     showFeedbackMessage("Incorrect, try again!", "incorrect");
     // Handle incorrect answer
+  }
+
+  if (rounds < maxRounds) {
+    startChallenge();
+  } else {
+    showResults();
   }
 }
 
@@ -122,15 +139,34 @@ function showFeedbackMessage(message, className) {
 }
 
 function startChallenge() {
-  // Choose a random square
-  const row = Math.floor(Math.random() * 8);
-  const col = Math.floor(Math.random() * 8);
-  const correctNotation = String.fromCharCode(97 + col) + (8 - row);
+  if (rounds < maxRounds) {
+    // Choose a random square
+    const row = Math.floor(Math.random() * 8);
+    const col = Math.floor(Math.random() * 8);
+    const correctNotation = String.fromCharCode(97 + col) + (8 - row);
 
-  // Display the notation for the user to find
-  const notationDisplay = document.getElementById("notationDisplay"); // Make sure you have this element in HTML
-  notationDisplay.textContent = `${correctNotation}`;
-  notationDisplay.setAttribute("data-correct-square", `square-${row}-${col}`);
+    // Display the notation for the user to find
+    const notationDisplay = document.getElementById("notationDisplay"); // Make sure you have this element in HTML
+    notationDisplay.textContent = `${correctNotation}`;
+    notationDisplay.setAttribute("data-correct-square", `square-${row}-${col}`);
+    rounds++;
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  const resultsList = document.getElementById("resultsList"); // Make sure you have this element in HTML
+  resultsList.innerHTML = "";
+
+  results.forEach((result, index) => {
+    const resultItem = document.createElement("li");
+    resultItem.textContent = `Round ${index + 1}: ${result.notation} - ${
+      result.isCorrect ? "Correct" : "Incorrect"
+    }`;
+    resultItem.className = result.isCorrect ? "correct" : "incorrect";
+    resultsList.appendChild(resultItem);
+  });
 }
 
 createChessBoard();

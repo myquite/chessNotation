@@ -216,6 +216,25 @@ button#quit-challenge-button:hover {
   margin: 1rem 0 1rem 0;
 }
 
+.results-list {
+  list-style: none;
+  padding: 0;
+}
+
+.results-list li {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.results-list li.correct {
+  background-color: #28a745; /* Green for correct */
+}
+
+.results-list li.incorrect {
+  background-color: #dc3545; /* Red for incorrect */
+}
+
 @media screen and (max-width: 600px) {
   .wrapper {
     flex-direction: column;
