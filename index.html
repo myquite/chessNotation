@@ -11,21 +11,16 @@
   </head>
   <body>
     <div class="wrapper">
+      <div id="notationDisplay" class="notation-display"></div>
       <div class="chessboard-container">
         <div class="answer hidden"></div>
         <div class="chessboard"></div>
       </div>
+      <div id="feedbackMessage" class="feedback-message"></div>
       <div class="menu">
-        <div class="scoreboard">
-          <p><span id="correctCount">0</span></p>
-          <p><span id="incorrectCount">0</span></p>
-        </div>
-        <div class="menu-main">
-          <button id="start-challenge-button" onclick="startChallenge()">
-            Start
-          </button>
-          <button id="quit-challenge-button" onclick="quitChallenge()">
-            Quit
+        <div class="menu-options">
+          <button class="start-button" onclick="startChallenge()">
+            Start Game
           </button>
           <button class="view-button white" onclick="toggleView()">
             View as Black
@@ -42,7 +37,6 @@
             />
             Toggle Notation
           </label>
-          <input type="text" id="userInput" placeholder="Enter notation" />
         </div>
       </div>
     </div>

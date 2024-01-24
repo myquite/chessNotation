@@ -1,5 +1,6 @@
 let correctCount = 0;
 let incorrectCount = 0;
+let feedbackTimeout;
 
 function createChessBoard(orientation = "white") {
   const chessboard = document.querySelector(".chessboard");
@@ -29,6 +30,12 @@ function createChessBoard(orientation = "white") {
 
       // Add the square to the chessboard
       chessboard.appendChild(square);
+
+      // Add click event listener to the square
+      square.addEventListener("click", function () {
+        checkSquare(this, `square-${row}-${col}`);
+        console.log(`${notation} clicked`);
+      });
     }
   }
 
@@ -84,91 +91,46 @@ function toggleChessNotation() {
   });
 }
 
-function startChallenge() {
-  // Remove highlight from all squares
-  clearHighlights();
-  focusAndSelectInput();
+function checkSquare(clickedSquare, squareId) {
+  const correctSquareId = document
+    .getElementById("notationDisplay")
+    .getAttribute("data-correct-square");
+  const feedbackMessage = document.getElementById("feedbackMessage");
 
-  // Randomly select a square
-  const row = Math.floor(Math.random() * 8);
-  const col = Math.floor(Math.random() * 8);
-  const selectedSquare = document.getElementById(`square-${row}-${col}`);
-  selectedSquare.classList.add("highlight");
-
-  // Store the correct answer for later validation
-  const correctNotation = String.fromCharCode(97 + col) + (8 - row);
-  selectedSquare.setAttribute("data-notation", correctNotation);
-}
-
-function checkNotation(userInput) {
-  const highlightedSquare = document.querySelector(".highlight");
-  if (highlightedSquare) {
-    const correctNotation = highlightedSquare.getAttribute("data-notation");
-    if (userInput === correctNotation) {
-      updateScoreboard(true);
-      displayAnswer("Correct!");
-      startChallenge();
-    } else {
-      updateScoreboard(false);
-      focusAndSelectInput();
-      displayAnswer("Incorrect, try again!");
-    }
+  if (squareId === correctSquareId) {
+    showFeedbackMessage("Correct!", "correct");
+    // Handle correct answer
+  } else {
+    showFeedbackMessage("Incorrect, try again!", "incorrect");
+    // Handle incorrect answer
   }
 }
 
-function displayAnswer(answer) {
-  const answerDiv = document.querySelector(".answer");
-  answerDiv.textContent = answer;
-  answerDiv.classList.remove("hidden");
-  setTimeout(() => {
-    answerDiv.classList.add("hidden");
+function showFeedbackMessage(message, className) {
+  const feedbackMessage = document.getElementById("feedbackMessage");
+  feedbackMessage.textContent = message;
+  feedbackMessage.className = `feedback-message ${className}`;
+  feedbackMessage.style.opacity = 1;
+
+  // Clear existing timeout
+  clearTimeout(feedbackTimeout);
+
+  // Hide the message after some time
+  feedbackTimeout = setTimeout(() => {
+    feedbackMessage.style.opacity = 0;
   }, 2000);
 }
 
-function clearHighlights() {
-  document.querySelectorAll(".square").forEach((sq) => {
-    sq.classList.remove("highlight");
-  });
-}
+function startChallenge() {
+  // Choose a random square
+  const row = Math.floor(Math.random() * 8);
+  const col = Math.floor(Math.random() * 8);
+  const correctNotation = String.fromCharCode(97 + col) + (8 - row);
 
-function quitChallenge() {
-  clearHighlights();
-  document.querySelector(".answer").classList.add("hidden");
-  const inputField = document.getElementById("userInput");
-  inputField.value = "";
-  resetScoreboard();
+  // Display the notation for the user to find
+  const notationDisplay = document.getElementById("notationDisplay"); // Make sure you have this element in HTML
+  notationDisplay.textContent = `${correctNotation}`;
+  notationDisplay.setAttribute("data-correct-square", `square-${row}-${col}`);
 }
-
-function focusAndSelectInput() {
-  const inputField = document.getElementById("userInput");
-  if (inputField) {
-    inputField.focus(); // Sets focus on the input field
-    inputField.select(); // Selects the current text
-  }
-}
-
-function updateScoreboard(isCorrect) {
-  if (isCorrect) {
-    correctCount++;
-    document.getElementById("correctCount").textContent = correctCount;
-  } else {
-    incorrectCount++;
-    document.getElementById("incorrectCount").textContent = incorrectCount;
-  }
-}
-
-function resetScoreboard() {
-  correctCount = 0;
-  incorrectCount = 0;
-  document.getElementById("correctCount").textContent = correctCount;
-  document.getElementById("incorrectCount").textContent = incorrectCount;
-}
-
-document.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    const userInput = document.getElementById("userInput").value;
-    checkNotation(userInput);
-  }
-});
 
 createChessBoard();
